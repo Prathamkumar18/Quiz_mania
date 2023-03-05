@@ -49,7 +49,7 @@ class ResultBox extends StatelessWidget {
       ],
       backgroundColor: Color.fromARGB(255, 214, 241, 244),
       content: Container(
-        height: 300,
+        height: 280,
         child: Column(children: [
           Divider(
             thickness: 3,
