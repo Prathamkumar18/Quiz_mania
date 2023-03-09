@@ -12,13 +12,11 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   String name = "";
-
   final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 248, 245, 208),
+      backgroundColor: Color.fromARGB(255, 223, 252, 253),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -55,7 +53,7 @@ class _ProfileState extends State<Profile> {
               height: 30,
             ),
             Text(
-              "Welcome $name 🙏",
+              "Welcome $name ",
               style: TextStyle(
                 color: Color.fromARGB(255, 11, 49, 81),
                 fontSize: 30,
@@ -106,14 +104,6 @@ class _ProfileState extends State<Profile> {
                           textColor: Colors.black,
                           fontSize: 12.0);
                     } else {
-                      Fluttertoast.showToast(
-                          msg: "Hello!!!   ${name}",
-                          toastLength: Toast.LENGTH_SHORT,
-                          gravity: ToastGravity.BOTTOM,
-                          timeInSecForIosWeb: 1,
-                          backgroundColor: Color.fromARGB(255, 194, 204, 244),
-                          textColor: Colors.black,
-                          fontSize: 15.0);
                       Navigator.push(
                         context,
                         MaterialPageRoute(

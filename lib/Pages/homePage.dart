@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:quiz_mania/Widget/ResultBox.dart';
 import 'package:quiz_mania/models/constants.dart';
@@ -96,8 +98,40 @@ class _HomePageState extends State<HomePage> {
       index = 0;
       isPressed = false;
       score = 0;
+      second = maxseconds;
+      startTimer();
     });
     Navigator.pop(context);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    startTimer();
+  }
+
+  static int maxseconds = 60;
+  int second = maxseconds;
+  late Timer timer;
+  void startTimer() {
+    timer = Timer.periodic(Duration(seconds: 1), (_) {
+      if (second > 0) {
+        setState(() {
+          second--;
+        });
+      } else {
+        setState(() {
+          timer.cancel();
+          showDialog(
+              context: context,
+              builder: ((ctx) => ResultBox(
+                    score: score,
+                    total_question: _questions.length,
+                    onPressed: StartOver,
+                  )));
+        });
+      }
+    });
   }
 
   @override
@@ -270,9 +304,6 @@ class _HomePageState extends State<HomePage> {
                                       : (isPressed)
                                           ? Colors.black
                                           : Colors.white,
-                                  // color: isPressed
-                                  //     ? Colors.white
-                                  //     : Colors.black),
                                 ),
                               ),
                             ));
@@ -294,6 +325,7 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () {
                               setState(() {
                                 if (index == _questions.length - 1) {
+                                  timer.cancel();
                                   showDialog(
                                       context: context,
                                       builder: ((ctx) => ResultBox(
@@ -316,6 +348,34 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              height: 80,
+              width: 80,
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  CircularProgressIndicator(
+                    value: second / maxseconds,
+                    strokeWidth: 10,
+                    valueColor: AlwaysStoppedAnimation(Colors.white),
+                    backgroundColor:
+                        second >= 11 ? Colors.greenAccent : Colors.red,
+                  ),
+                  Center(
+                    child: Text(
+                      second > 0 ? "$second" : "TimeOver",
+                      style: TextStyle(
+                          fontSize: second > 0 ? 35 : 15,
+                          fontWeight: FontWeight.bold,
+                          color: lightmode == 1 ? Colors.black : Colors.white),
+                    ),
+                  )
+                ],
               ),
             )
           ]),
