@@ -1,16 +1,5 @@
-# quiz_mania
+#Quiz_Mania
 
-A new Flutter project.
+A flutter project (With Timer).
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://user-images.githubusercontent.com/96865753/223999563-f709af52-c76b-46c8-96a5-fa0aad022dc3.mp4
